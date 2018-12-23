@@ -44,14 +44,23 @@ exports.model = {
     // user: 'root',
     // password: 'root',
     // dateStrings: true
+    // handle: mysql,
+    // database: 'xbyjshop',
+    // prefix: 'xbyjshop_',
+    // encoding: 'utf8mb4',
+    // host: '192.168.56.102',
+    // port: '3306',
+    // user: 'root',
+    // password: '2910',
+    // dateStrings: true
     handle: mysql,
     database: 'xbyjshop',
     prefix: 'xbyjshop_',
     encoding: 'utf8mb4',
-    host: '192.168.56.102',
+    host: '127.0.0.1',
     port: '3306',
     user: 'root',
-    password: '2910',
+    password: '123456',
     dateStrings: true
   }
 };
