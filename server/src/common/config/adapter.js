@@ -48,10 +48,10 @@ exports.model = {
     database: 'xbyjshop',
     prefix: 'xbyjshop_',
     encoding: 'utf8mb4',
-    host: '192.168.56.102',
+    host: '192.168.56.101',
     port: '3306',
     user: 'root',
-    password: '2910',
+    password: '12345',
     dateStrings: true
   }
 };
