@@ -1,3 +1,29 @@
+# IDE config
+.idea
+
+# Dependency directory
+# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
+node_modules/
+
+runtime/
+
+src/api
+
+test/
+
+view/
+
+www/
+
+.eslintrc
+.gitignore
+development.js
+nginx.conf
+note
+pm2.json
+production.js
+*.md
+
 # Logs
 logs
 *.log
@@ -19,18 +45,15 @@ coverage/
 # node-waf configuration
 .lock-wscript
 
-# Dependency directory
-# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
-node_modules/
 
-# IDE config
-.idea
+
+
 
 # output
 output/
 output.tar.gz
 
-runtime/
+
 app/
 
 config.development.js
