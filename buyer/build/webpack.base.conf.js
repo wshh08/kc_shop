@@ -10,6 +10,10 @@ var glob = require('glob')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
 var relative = require('relative')
 
+// 以下mpvue-entry配置参考mpvue-entry github页面文档:https://github.com/F-loat/mpvue-entry
+// 引入mpvue-entry插件
+const MpvueEntry = require('mpvue-entry')
+
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
@@ -23,10 +27,12 @@ function getEntry (rootSrc) {
   })
    return map;
 }
-
-const appEntry = { app: resolve('./src/main.js') }
-const pagesEntry = getEntry(resolve('./src'), 'pages/**/main.js')
-const entry = Object.assign({}, appEntry, pagesEntry)
+// 配置mpvue能够查找到各pages作为entries
+const entry = MpvueEntry.getEntry('src/app.json')
+// 使用mpvueEntry插件后以下3行代码功能通过mpvueEntry实现，所以注释掉
+// const appEntry = { app: resolve('./src/main.js') }
+// const pagesEntry = getEntry(resolve('./src'), 'pages/**/main.js')
+// const entry = Object.assign({}, appEntry, pagesEntry)
 
 let baseWebpackConfig = {
   // 如果要自定义生成的 dist 目录里面的文件路径，
@@ -46,7 +52,10 @@ let baseWebpackConfig = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       'vue': 'mpvue',
-      '@': resolve('src')
+      '@': resolve('src'),
+      flyio: 'flyio/dist/npm/wx',
+      wx: resolve('src/utils/wx'),
+      wxFunction: resolve('src/utils/wxFunction')
     },
     symlinks: false,
     aliasFields: ['mpvue', 'weapp', 'browser'],
@@ -54,15 +63,6 @@ let baseWebpackConfig = {
   },
   module: {
     rules: [
-      {
-        test: /\.(js|vue)$/,
-        loader: 'eslint-loader',
-        enforce: 'pre',
-        include: [resolve('src'), resolve('test')],
-        options: {
-          formatter: require('eslint-friendly-formatter')
-        }
-      },
       {
         test: /\.vue$/,
         loader: 'mpvue-loader',
@@ -124,7 +124,9 @@ let baseWebpackConfig = {
         to: path.resolve(config.build.assetsRoot, './static'),
         ignore: ['.*']
       }
-    ])
+    ]),
+    // 配置mpvue-entry插件
+    new MpvueEntry()
   ]
 }
 

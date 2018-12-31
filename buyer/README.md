@@ -1,6 +1,6 @@
 # buyer
 
-> buyer project
+> kc_shop_buyer
 
 ## Build Setup
 
